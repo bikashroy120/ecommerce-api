@@ -10,7 +10,10 @@ const PORT = process.env.PORT || 4000
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const blogRoutes = require('./routes/blogRoutes');
-const productCatRoutes = require("./routes/productCatRoutes")
+const productCatRoutes = require("./routes/productCatRoutes");
+const colorRoutes = require("./routes/colorRoutes");
+const brandRoutes = require("./routes/brandRoutes");
+const blogCatRoutes = require("./routes/blogCatRoutes")
 dbConnect()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -22,6 +25,9 @@ app.use("/api/user", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/blog",blogRoutes);
 app.use("/api/product-category",productCatRoutes);
+app.use("/api/color",colorRoutes);
+app.use("/api/brand",brandRoutes);
+app.use("/api/blog-category",blogCatRoutes)
 app.use(notFound)
 app.use(errorHandeler)
 app.listen(PORT,()=>{
