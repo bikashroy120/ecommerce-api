@@ -65,13 +65,14 @@ const deleteBlog = asyncHandler(async(req,res,next)=>{
     }
 })
 
-const liketheBlog = asyncHandler(async (req, res) => {
+const liketheBlog = asyncHandler(async (req, res,next) => {
     const { blogId } = req.body;
-    validateMongoDbId(blogId);
     // Find the blog which you want to be liked
     const blog = await Blog.findById(blogId);
     // find the login user
     const loginUserId = req?.user?._id;
+
+    console.log(blog)
     // find if the user has liked the blog
     const isLiked = blog?.isLiked;
     // find if the user has disliked the blog
@@ -111,7 +112,7 @@ const liketheBlog = asyncHandler(async (req, res) => {
       res.json(blog);
     }
   });
-  const disliketheBlog = asyncHandler(async (req, res) => {
+  const disliketheBlog = asyncHandler(async (req, res,next) => {
     const { blogId } = req.body;
     // Find the blog which you want to be liked
     const blog = await Blog.findById(blogId);
