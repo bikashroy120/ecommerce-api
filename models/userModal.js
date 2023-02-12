@@ -37,7 +37,7 @@ var userSchema = new mongoose.Schema({
         type: String,
       },
     city:[{type:mongoose.Schema.Types.ObjectId,ref:"Address"}],
-    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:"Product"}]
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 },{
     timestamps:true
 });
