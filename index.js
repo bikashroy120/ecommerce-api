@@ -13,7 +13,8 @@ const blogRoutes = require('./routes/blogRoutes');
 const productCatRoutes = require("./routes/productCatRoutes");
 const colorRoutes = require("./routes/colorRoutes");
 const brandRoutes = require("./routes/brandRoutes");
-const blogCatRoutes = require("./routes/blogCatRoutes")
+const blogCatRoutes = require("./routes/blogCatRoutes");
+const couponRoutes = require("./routes/couponRouters");
 dbConnect()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -28,6 +29,7 @@ app.use("/api/product-category",productCatRoutes);
 app.use("/api/color",colorRoutes);
 app.use("/api/brand",brandRoutes);
 app.use("/api/blog-category",blogCatRoutes)
+app.use("/api/coupon",couponRoutes)
 app.use(notFound)
 app.use(errorHandeler)
 app.listen(PORT,()=>{
