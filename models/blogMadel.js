@@ -44,15 +44,15 @@ var blogSchema = new mongoose.Schema(
       type: String,
       default: "Admin",
     },
-    // images: [],
+    images: [],
   },
   {
-    // toJSON: {
-    //   virtuals: true,
-    // },
-    // toObject: {
-    //   virtuals: true,
-    // },
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
     timestamps: true,
   }
 );
