@@ -3,6 +3,7 @@ const express = require("express");
 const dbConnect = require("./config/dbConnect");
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
+const cors = require('cors')
 const { notFound, errorHandeler } = require("./middlewarer/errorHandelere");
 const app = express()
 const dotenv = require("dotenv").config();
@@ -16,6 +17,7 @@ const brandRoutes = require("./routes/brandRoutes");
 const blogCatRoutes = require("./routes/blogCatRoutes");
 const couponRoutes = require("./routes/couponRouters");
 dbConnect()
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cookieParser())
