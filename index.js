@@ -16,6 +16,7 @@ const colorRoutes = require("./routes/colorRoutes");
 const brandRoutes = require("./routes/brandRoutes");
 const blogCatRoutes = require("./routes/blogCatRoutes");
 const couponRoutes = require("./routes/couponRouters");
+const uploadImage = require("./routes/uploadRoute")
 dbConnect()
 app.use(cors())
 app.use(bodyParser.json())
@@ -32,6 +33,7 @@ app.use("/api/color",colorRoutes);
 app.use("/api/brand",brandRoutes);
 app.use("/api/blog-category",blogCatRoutes)
 app.use("/api/coupon",couponRoutes)
+app.use("/api/upload",uploadImage)
 app.use(notFound)
 app.use(errorHandeler)
 app.listen(PORT,()=>{
