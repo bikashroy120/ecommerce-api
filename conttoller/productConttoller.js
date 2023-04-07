@@ -3,7 +3,7 @@ const User = require("../models/userModal")
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify")
 
-const createProduct = asyncHandler(async (req, res) => {
+const   createProduct = asyncHandler(async (req, res) => {
     try {
       if (req.body.title) {
         req.body.slug = slugify(req.body.title);

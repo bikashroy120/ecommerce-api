@@ -23,12 +23,14 @@ var productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref:"PCategory"
     },
     brand: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref:"Brand"
     },
     quantity: {
       type: Number,
@@ -44,7 +46,12 @@ var productSchema = new mongoose.Schema(
         url: String,
       },
     ],
-    color: [],
+    color: [
+      {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Color"
+      }
+    ],
     tags: String,
     ratings: [
       {
@@ -60,6 +67,19 @@ var productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+
+productSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'color',
+  }).populate({
+    path: 'brand',
+  }).populate({
+    path: 'category',
+  });
+
+  next();
+});
 
 //Export the model
 module.exports = mongoose.model("Product", productSchema);
