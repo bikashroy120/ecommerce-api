@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const { notFound, errorHandeler } = require("./middlewarer/errorHandelere");
 const app = express()
+const path = require("path")
 const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 4000
 const authRoutes = require("./routes/authRoutes");
@@ -21,6 +22,8 @@ dbConnect()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.static(path.join(__dirname,"uploads")))
+app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use(cookieParser())
 app.use(morgan('dev'))
 
@@ -33,7 +36,7 @@ app.use("/api/color",colorRoutes);
 app.use("/api/brand",brandRoutes);
 app.use("/api/blog-category",blogCatRoutes)
 app.use("/api/coupon",couponRoutes)
-app.use("/api/upload",uploadImage)
+app.use("/api/upload",uploadImage) 
 app.use(notFound)
 app.use(errorHandeler)
 app.listen(PORT,()=>{

@@ -8,7 +8,7 @@ router.post("/",authMiddleware,isAdmin,createCategory)
 router.put("/:id",updateCategory)
 router.get("/:id",getCategory)
 router.get("/",getallCategory)
-router.delete("/",deleteCategory)
+router.delete("/delete/:id",deleteCategory)
 
 
 

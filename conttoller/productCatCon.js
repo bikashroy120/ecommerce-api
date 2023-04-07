@@ -21,8 +21,9 @@ const updateCategory = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-const deleteCategory = asyncHandler(async (req, res) => {
+const deleteCategory = asyncHandler(async (req, res,next) => {
   const { id } = req.params;
+  console.log(id)
   try {
     const deletedCategory = await Category.findByIdAndDelete(id);
     res.json(deletedCategory);
