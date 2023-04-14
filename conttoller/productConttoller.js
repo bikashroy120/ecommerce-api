@@ -21,10 +21,11 @@ const   createProduct = asyncHandler(async (req, res) => {
       if (req.body.title) {
         req.body.slug = slugify(req.body.title);
       }
-      const updateProduct = await Product.findOneAndUpdate({ id }, req.body, {
+      const tour = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
+        runValidators: true
       });
-      res.json(updateProduct);
+      res.json(tour);
     } catch (error) {
       throw new Error(error);
     }
