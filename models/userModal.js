@@ -42,6 +42,15 @@ var userSchema = new mongoose.Schema({
     timestamps:true
 });
 
+userSchema.pre(/^find/, function(next) {
+    this.populate({
+      path: 'wishlist',
+    })
+  
+    next();
+  });
+
+
 // userSchema.pre("save", async (next)=>{
 //     const salt = await bcrypt.genSaltSync(10)
 //     this.password = await bcrypt.hash(this.password, salt)
