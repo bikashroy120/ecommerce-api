@@ -19,7 +19,6 @@ var userSchema = new mongoose.Schema({
     mobile:{
         type:String,
         required:true,
-        unique:true,
     },
     password:{
         type:String,
@@ -33,10 +32,11 @@ var userSchema = new mongoose.Schema({
         type:Array,
         default:[]
     },
+    image:String,
     refreshToken: {
         type: String,
       },
-    city:[{type:mongoose.Schema.Types.ObjectId,ref:"Address"}],
+    city:String,
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 },{
     timestamps:true

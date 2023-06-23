@@ -15,10 +15,10 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
           next();
         }
       } catch (error) {
-        throw new Error(error);
+        res.status(401).json(error)
       }
     } else {
-      throw new Error(" There is no token attached to header");
+      res.status(401).json({message:"There is no token attached to header"});
     }
   });
 

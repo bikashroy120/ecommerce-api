@@ -2,9 +2,22 @@ const Product = require("../models/productModel");
 const User = require("../models/userModal")
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify")
+const fs = require('fs');
 
 const   createProduct = asyncHandler(async (req, res) => {
     try {
+
+      if(req.files){
+        const newimage = []
+        req.files.forEach((item)=>{
+          newimage.push(item.filename)
+        })
+
+        req.body.images = newimage
+      }
+
+
+
       if (req.body.title) {
         req.body.slug = slugify(req.body.title);
       }
@@ -34,7 +47,19 @@ const   createProduct = asyncHandler(async (req, res) => {
   const deleteProduct = asyncHandler(async (req, res) => {
     const id = req.params;
     try {
+
       const deleteProduct = await Product.findOneAndDelete(id);
+
+      deleteProduct.images.forEach((filename) => {
+        const filePath = `uploads/${filename}`;
+        
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error(err);
+          }
+        });
+      });
+
       res.json(deleteProduct);
     } catch (error) {
       throw new Error(error);

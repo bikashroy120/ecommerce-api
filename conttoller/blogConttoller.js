@@ -5,6 +5,7 @@ const asyncHandler = require("express-async-handler");
 const { cloudinaryUploadImg } = require("../utails/cloudinary");
 
 const creactBlog = asyncHandler(async(req,res,next)=>{
+    req.body.image  = req.file.filename;
     try {
       const newBlog = await Blog.create(req.body);
         res.json(newBlog)
@@ -61,7 +62,15 @@ const deleteBlog = asyncHandler(async(req,res,next)=>{
 
     try {
         const deletedblog = await Blog.findByIdAndDelete(id);
-        rs.json("blog is Delete")
+        if(deletedblog.image){
+          const filePath = `uploads/${deletedblog.image}`;
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.error(err);
+            }
+          })
+        }
+        res.json("blog is Delete")
     } catch (error) {
         throw new Error(error)
     }

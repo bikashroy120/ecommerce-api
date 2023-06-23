@@ -18,6 +18,10 @@ var productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    bprice: {
+      type: Number,
+      required: true,
+    },
     price: {
       type: Number,
       required: true,

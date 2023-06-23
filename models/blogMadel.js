@@ -44,7 +44,7 @@ var blogSchema = new mongoose.Schema(
       type: String,
       default: "Admin",
     },
-    images: [],
+    image: String,
   },
   {
     toJSON: {
