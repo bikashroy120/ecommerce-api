@@ -27,7 +27,9 @@ app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use(cookieParser())
 app.use(morgan('dev'))
 
-
+app.get("/",(req,res)=>{
+    res.send("Hellow routs")
+})
 app.use("/api/user", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/blog",blogRoutes);
